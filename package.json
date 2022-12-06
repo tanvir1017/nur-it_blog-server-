@@ -1,0 +1,34 @@
+{
+  "name": "practice_mongoose_tt",
+  "version": "1.0.1",
+  "description": "This is a practice session of my code about mongoose with mongodb backend",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start-dev": "nodemon app.js",
+    "build": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanvir1017/nur-it_blog-server-.git"
+  },
+  "keywords": [
+    "N/A"
+  ],
+  "author": "tanvir1017 - Tanvir Hossain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tanvir1017/nur-it_blog-server-/issues"
+  },
+  "homepage": "https://github.com/tanvir1017/nur-it_blog-server-#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
+}
