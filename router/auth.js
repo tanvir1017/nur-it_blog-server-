@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
 require("../db/connection");
 const User = require("../model/userSchema");
 
@@ -100,17 +101,29 @@ router.get("/sign-in", async (req, res) => {
           success: false,
           message: "wrong credential",
         });
-      } else if (password !== userFind.password) {
-        return res.status(422).send({
-          success: false,
-          message: "wrong credential",
-        });
       } else {
-        return res.status(200).send({
-          success: true,
-          message: "Sign in successful",
-          data: userFind,
+        const checkPass = await bcrypt.compare(password, userFind.password);
+
+        // TODO : cookie set
+        const token = await userFind.generateCookie();
+
+        res.cookie("nur-it_blogs-session", token, {
+          expires: new Date(Date.now() + 2592000),
+          httpOnly: true,
         });
+
+        if (!checkPass) {
+          return res.status(422).send({
+            success: false,
+            message: "wrong credential",
+          });
+        } else {
+          return res.status(200).send({
+            success: true,
+            message: "Sign in successful",
+            data: userFind,
+          });
+        }
       }
     }
   } catch (error) {
